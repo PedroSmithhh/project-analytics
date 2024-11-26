@@ -73,36 +73,4 @@ Conclui-se que seria interessante para o estabelecimento investir na qualidade d
 estender o horário de atendimento. Alèm disso, seria interessante propor algum incentivo para aumentar a presença de homens no estabelecimento
 """)
 
-# Comparação de Gorjetas e Contas
-fig, ax1 = plt.subplots(figsize=(8, 4))
-
-# Linha para "Total Bill"
-ax1.plot(df["total_bill"], label="Total Bill", color="blue")
-ax1.set_ylabel("Total Bill ($)", color="blue")
-ax1.tick_params(axis="y", labelcolor="blue")
-ax1.set_xlabel("Índice")
-
-ax2 = ax1.twinx()
-ax2.plot(df["tip"], label="Tip", color="orange")
-ax2.set_ylabel("Tip ($)", color="orange")
-ax2.tick_params(axis="y", labelcolor="orange")
-
-# Título e ajustes
-fig.suptitle("Comparação de Total Bill e Tip", fontsize=16)
-st.pyplot(fig)
-
-# Insights do grafico de ContaxGorjeta
-st.header("Insights")
-st.write("""
-- Analisar o comportmento das gorjetas com o aumento do numero de pessoas na mesa (x=size,y=tip)
-    - Nessa análise, nota-se que há um aumento considerável de gorjeta conforme o número de pessoas na mesa aumenta
-
-""")
-
-# Conclusões do gráfico de diContaxGorjeta
-st.header("Conclusão")
-st.write("""
-Conclui-se que seria interessante para o estabelecimento investir na qualidade do atendimento aos finais de semana ou até
-estender o horário de atendimento. Alèm disso, seria interessante propor algum incentivo para aumentar a presença de homens no estabelecimento
-""")
 
