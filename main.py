@@ -14,6 +14,7 @@ st.write(df.to_string(index=False))
 
 # Visão Geral
 st.header("Visão Geral do Dataset")
+st.write(df.describe()) 
 
 # Seleção de variáveis
 st.sidebar.header("Configurações")
