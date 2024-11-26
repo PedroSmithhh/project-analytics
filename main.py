@@ -52,6 +52,12 @@ Conclui-se que seria interessante para o estabelecimento investir na qualidade d
 estender o horário de atendimento. Alèm disso, seria interessante propor algum incentivo para aumentar a presença de homens no estabelecimento
 """)
 
+# Grafico de linhas
+st.header("Gráfico de linha")
+fig, ax = plt.subplots(figsize=(8, 4))
+sns.lineplot(data=df, x=x_var, y=y_var, ax=ax, marker='o')
+st.pyplot(fig)
+
 # Sliders
 range_values = st.slider('Selecione um intervalo de gorjetas', 0, 10, (2, 5))
 filtered_data = df[(df['tip'] >= range_values[0]) & (df['tip'] <= range_values[1])]
