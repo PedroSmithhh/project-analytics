@@ -1,0 +1,6 @@
+# Ignorar pastas virtuais e caches
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store

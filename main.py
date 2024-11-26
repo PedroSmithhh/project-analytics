@@ -2,6 +2,9 @@ import streamlit as st
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, r2_score
 
 # Carregando o dataset
 df = sns.load_dataset('tips')
@@ -88,3 +91,46 @@ st.write("""
 Conclui-se que quando um cliente gasta mais ele estranhamente tende a dar mais gorjeta, provavelmente esses clientes possuem
 uma boa condição financeira
 """)
+
+# 1. Pré-processamento
+# Variável alvo
+y = df["tip"]
+
+# Variáveis preditoras (drop exclui a coluna `tip`)
+X = df.drop(columns=["tip"])
+
+# Transformar variáveis categóricas em numéricas
+X = pd.get_dummies(X, drop_first=True)  # One-Hot Encoding para variáveis categóricas
+
+# 2. Divisão dos Dados
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 3. Treinar o modelo
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# 4. Fazer previsões
+y_pred = model.predict(X_test)
+
+# 5. Avaliar o modelo
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+# Mostrar resultados no Streamlit
+st.header("Modelagem Estatística e Predição")
+st.write(f"Erro Médio Absoluto (MAE): {mae:.2f}")
+st.write(f"Coeficiente de Determinação (R²): {r2:.2f}")
+
+# 6. Visualizar resultados
+st.subheader("Comparação de Valores Reais vs Previstos")
+results = pd.DataFrame({"Real": y_test, "Previsto": y_pred})
+st.write(results.head())
+
+# Gráfico: Valores Reais vs Previstos
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.scatter(y_test, y_pred, alpha=0.7)
+ax.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], "r--", lw=2)
+ax.set_xlabel("Valor Real")
+ax.set_ylabel("Valor Previsto")
+ax.set_title("Regressão Linear: Valores Reais vs Previstos")
+st.pyplot(fig)
