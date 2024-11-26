@@ -118,6 +118,7 @@ r2 = r2_score(y_test, y_pred)
 
 # Mostrar resultados no Streamlit
 st.header("Modelagem Estatística e Predição")
+st.write(" É possível prever o valor da gorjeta com base nas demais variáveis do dataset?")
 st.write(f"Erro Médio Absoluto (MAE): {mae:.2f}")
 st.write(f"Coeficiente de Determinação (R²): {r2:.2f}")
 
