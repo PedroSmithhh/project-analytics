@@ -9,9 +9,11 @@ df = sns.load_dataset('tips')
 # Título do app
 st.title("Análise de Gorjetas com Streamlit")
 
+# Dataset
+st.write(df.to_string(index=False))
+
 # Visão Geral
 st.header("Visão Geral do Dataset")
-st.write(df.describe())
 
 # Seleção de variáveis
 st.sidebar.header("Configurações")
