@@ -73,4 +73,12 @@ Conclui-se que seria interessante para o estabelecimento investir na qualidade d
 estender o horário de atendimento. Alèm disso, seria interessante propor algum incentivo para aumentar a presença de homens no estabelecimento
 """)
 
+# Gráfico de regressão
+st.header("Regressão entre Total Bill e Tip")
+fig, ax = plt.subplots(figsize=(8, 4))
+
+sns.regplot(data=df, x=x_var, y=y_var, ax=ax, scatter_kws={"s": 50}, line_kws={"color": "red"})
+
+ax.set_title("Regressão Linear entre Total Bill e Tip", fontsize=16)
+st.pyplot(fig)
 
