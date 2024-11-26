@@ -125,7 +125,7 @@ st.write(f"Coeficiente de Determinação (R²): {r2:.2f}")
 st.subheader("Comparação de Valores Reais vs Previstos")
 results = pd.DataFrame({"Real": y_test, "Previsto": y_pred})
 st.markdown(results.style.hide(axis="index").to_html(), unsafe_allow_html=True)
-st.write(results.head())
+st.write(results.head().round(2))
 
 # Gráfico: Valores Reais vs Previstos
 fig, ax = plt.subplots(figsize=(8, 4))
