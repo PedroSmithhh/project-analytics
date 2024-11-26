@@ -74,13 +74,22 @@ estender o horário de atendimento. Alèm disso, seria interessante propor algum
 """)
 
 # Comparação de Gorjetas e Contas
-fig, ax1 = plt.subplots()
+fig, ax1 = plt.subplots(figsize=(8, 4))
+
+# Linha para "Total Bill"
 ax1.plot(df["total_bill"], label="Total Bill", color="blue")
-ax1.set_ylabel("Total Bill", color="blue")
+ax1.set_ylabel("Total Bill ($)", color="blue")
+ax1.tick_params(axis="y", labelcolor="blue")
+ax1.set_xlabel("Índice")
 
 ax2 = ax1.twinx()
 ax2.plot(df["tip"], label="Tip", color="orange")
-ax2.set_ylabel("Tip", color="orange")
+ax2.set_ylabel("Tip ($)", color="orange")
+ax2.tick_params(axis="y", labelcolor="orange")
+
+# Título e ajustes
+fig.suptitle("Comparação de Total Bill e Tip", fontsize=16)
+st.pyplot(fig)
 
 # Insights do grafico de ContaxGorjeta
 st.header("Insights")
@@ -97,9 +106,3 @@ Conclui-se que seria interessante para o estabelecimento investir na qualidade d
 estender o horário de atendimento. Alèm disso, seria interessante propor algum incentivo para aumentar a presença de homens no estabelecimento
 """)
 
-# Sliders
-range_values = st.slider('Selecione um intervalo de gorjetas', 0, 10, (2, 5))
-filtered_data = df[(df['tip'] >= range_values[0]) & (df['tip'] <= range_values[1])]
-
-st.write(filtered_data)
-st.bar_chart(filtered_data['tip'])
