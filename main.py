@@ -55,8 +55,47 @@ estender o horário de atendimento. Alèm disso, seria interessante propor algum
 # Grafico de linhas
 st.header("Gráfico de linha")
 fig, ax = plt.subplots(figsize=(8, 4))
-sns.lineplot(data=df, x=x_var, y=y_var, ax=ax, marker='o')
+sns.lineplot(data=df, x=x_var, y=y_var, ax=ax, marker='o') # Cria bandas de confiança com 95% de conifança
 st.pyplot(fig)
+
+# Insights do grafico de dispersão
+st.header("Insights")
+st.write("""
+- Analisar o comportmento das gorjetas com o aumento do numero de pessoas na mesa (x=size,y=tip)
+    - Nessa análise, nota-se que há um aumento considerável de gorjeta conforme o número de pessoas na mesa aumenta
+
+""")
+
+# Conclusões do gráfico de dispersão
+st.header("Conclusão")
+st.write("""
+Conclui-se que seria interessante para o estabelecimento investir na qualidade do atendimento aos finais de semana ou até
+estender o horário de atendimento. Alèm disso, seria interessante propor algum incentivo para aumentar a presença de homens no estabelecimento
+""")
+
+# Comparação de Gorjetas e Contas
+fig, ax1 = plt.subplots()
+ax1.plot(df["total_bill"], label="Total Bill", color="blue")
+ax1.set_ylabel("Total Bill", color="blue")
+
+ax2 = ax1.twinx()
+ax2.plot(df["tip"], label="Tip", color="orange")
+ax2.set_ylabel("Tip", color="orange")
+
+# Insights do grafico de ContaxGorjeta
+st.header("Insights")
+st.write("""
+- Analisar o comportmento das gorjetas com o aumento do numero de pessoas na mesa (x=size,y=tip)
+    - Nessa análise, nota-se que há um aumento considerável de gorjeta conforme o número de pessoas na mesa aumenta
+
+""")
+
+# Conclusões do gráfico de diContaxGorjeta
+st.header("Conclusão")
+st.write("""
+Conclui-se que seria interessante para o estabelecimento investir na qualidade do atendimento aos finais de semana ou até
+estender o horário de atendimento. Alèm disso, seria interessante propor algum incentivo para aumentar a presença de homens no estabelecimento
+""")
 
 # Sliders
 range_values = st.slider('Selecione um intervalo de gorjetas', 0, 10, (2, 5))
