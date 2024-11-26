@@ -52,3 +52,9 @@ Conclui-se que seria interessante para o estabelecimento investir na qualidade d
 estender o horário de atendimento. Alèm disso, seria interessante propor algum incentivo para aumentar a presença de homens no estabelecimento
 """)
 
+# Sliders
+range_values = st.slider('Selecione um intervalo de gorjetas', 0, 10, (2, 5))
+filtered_data = df[(df['tip'] >= range_values[0]) & (df['tip'] <= range_values[1])]
+
+st.write(filtered_data)
+st.bar_chart(filtered_data['tip'])
