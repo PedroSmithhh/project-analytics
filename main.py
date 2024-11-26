@@ -83,3 +83,8 @@ ax.set_ylabel(f"{y_var} ($)")
 
 st.pyplot(fig)
 
+st.header("Conclusão")
+st.write("""
+Conclui-se que quando um cliente gasta mais ele estranhamente tende a dar mais gorjeta, provavelmente esses clientes possuem
+uma boa condição financeira
+""")
