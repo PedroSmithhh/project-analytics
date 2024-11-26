@@ -29,11 +29,7 @@ st.sidebar.header("Configurações")
 x_var = st.sidebar.selectbox("Selecione a variável X:", df.columns)
 y_var = st.sidebar.selectbox("Selecione a variável Y:", df.columns)
 
-# Gráfico de dispersão
-st.header("Gráfico de Dispersão")
-fig, ax = plt.subplots()
-sns.scatterplot(data=df, x=x_var, y=y_var, hue='sex', ax=ax)
-st.pyplot(fig)
+
 
 # Insights do grafico de dispersão
 st.header("Insights")
@@ -74,11 +70,16 @@ estender o horário de atendimento. Alèm disso, seria interessante propor algum
 """)
 
 # Gráfico de regressão
-st.header("Regressão entre Total Bill e Tip")
+st.header(f"Regressão entre {x_var} e {y_var}")
 fig, ax = plt.subplots(figsize=(8, 4))
 
+# Plotando a regressão
 sns.regplot(data=df, x=x_var, y=y_var, ax=ax, scatter_kws={"s": 50}, line_kws={"color": "red"})
 
-ax.set_title("Regressão Linear entre Total Bill e Tip", fontsize=16)
+# Título e ajustes
+ax.set_title(f"Regressão Linear entre {x_var} e {y_var}", fontsize=16)
+ax.set_xlabel(f"{x_var} ($)")
+ax.set_ylabel(f"{y_var} ($)")
+
 st.pyplot(fig)
 
