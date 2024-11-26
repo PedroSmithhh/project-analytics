@@ -10,7 +10,7 @@ df = sns.load_dataset('tips')
 st.title("Análise de Gorjetas com Streamlit")
 
 # Dataset
-st.write(df.to_string(index=False))
+st.write(df)
 
 # Visão Geral
 st.header("Visão Geral do Dataset")
