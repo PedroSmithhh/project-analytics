@@ -92,46 +92,46 @@ Conclui-se que quando um cliente gasta mais ele estranhamente tende a dar mais g
 uma boa condição financeira
 """)
 
-# 1. Pré-processamento
 # Variável alvo
 y = df["tip"]
 
-# Variáveis preditoras (drop exclui a coluna `tip`)
-X = df.drop(columns=["tip"])
+# Variável preditora
+X = df[["total_bill"]]  # Transformar em DataFrame para compatibilidade com scikit-learn
 
-# Transformar variáveis categóricas em numéricas
-X = pd.get_dummies(X, drop_first=True)  # One-Hot Encoding para variáveis categóricas
-
-# 2. Divisão dos Dados
+# Dividimos os dados para treinar o modelo e avaliá-lo posteriormente.
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# 3. Treinar o modelo
+# Criação e treinamento de um modelo de regressão linear
 model = LinearRegression()
 model.fit(X_train, y_train)
 
-# 4. Fazer previsões
+# Usando o modelo para fazer as predições
 y_pred = model.predict(X_test)
 
-# 5. Avaliar o modelo
+# Métricas para avaliar o desempenho do modelo
 mae = mean_absolute_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
-# Mostrar resultados no Streamlit
-st.header("Modelagem Estatística e Predição")
-st.write(" É possível prever o valor da gorjeta com base nas demais variáveis do dataset?")
+# Exibir métricas no Streamlit
+st.header("Avaliação do Modelo")
 st.write(f"Erro Médio Absoluto (MAE): {mae:.2f}")
 st.write(f"Coeficiente de Determinação (R²): {r2:.2f}")
 
-# 6. Visualizar resultados
-st.subheader("Comparação de Valores Reais vs Previstos")
-results = pd.DataFrame({"Real": y_test, "Previsto": y_pred})
-st.markdown(results.head().style.format("{:.2f}").hide(axis="index").to_html(), unsafe_allow_html=True)
-
-# Gráfico: Valores Reais vs Previstos
+# Comparação de valores reais e previstos
 fig, ax = plt.subplots(figsize=(8, 4))
-ax.scatter(y_test, y_pred, alpha=0.7)
-ax.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], "r--", lw=2)
-ax.set_xlabel("Valor Real")
-ax.set_ylabel("Valor Previsto")
-ax.set_title("Regressão Linear: Valores Reais vs Previstos")
+ax.scatter(X_test, y_test, color="blue", label="Valores Reais", alpha=0.6)
+ax.scatter(X_test, y_pred, color="red", label="Valores Previstos", alpha=0.6)
+ax.set_xlabel("Total Bill")
+ax.set_ylabel("Tip")
+ax.set_title("Regressão Linear: Total Bill vs Tip")
+ax.legend()
 st.pyplot(fig)
+
+# Permitir que o usuário insisra valores de conta e prever o valor da gorjeta
+st.sidebar.header("Predição de Gorjeta")
+total_bill_input = st.sidebar.number_input("Insira o valor da conta:", min_value=0.0, step=1.0)
+
+# Predizer gorjeta para o valor de entrada
+if total_bill_input > 0:
+    predicted_tip = model.predict([[total_bill_input]])[0]
+    st.sidebar.write(f"Gorjeta Prevista: ${predicted_tip:.2f}")
