@@ -72,8 +72,7 @@ st.write("""
 # Conclusões do gráfico de linhas
 st.header("Conclusão")
 st.write("""
-Conclui-se que seria interessante para o estabelecimento investir na qualidade do atendimento aos finais de semana ou até
-estender o horário de atendimento. Alèm disso, seria interessante propor algum incentivo para aumentar a presença de homens no estabelecimento
+Conclui-se que investir em um ambiente que seja confortavel para grupos de pessoas é uma boa alternativa para o aumento das gorjetas
 """)
 
 # Gráfico de regressão
@@ -146,3 +145,9 @@ total_bill_input = st.sidebar.number_input("Insira o valor da conta:", min_value
 if total_bill_input > 0:
     predicted_tip = model.predict(pd.DataFrame([[total_bill_input]], columns=["total_bill"]))[0]
     st.sidebar.write(f"Gorjeta Prevista: ${predicted_tip:.2f}")
+
+# Conclusões do gráfico de linhas
+st.header("Conclusão")
+st.write("""
+Conclui-se que há um aumento significativo no valor da gorjeta quando o valor da conta é maior
+""")
