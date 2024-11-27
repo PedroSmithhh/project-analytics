@@ -156,6 +156,8 @@ st.write("""
 Conclui-se que há um aumento significativo no valor da gorjeta quando o valor da conta é maior
 """)
 
+st.headr("Relações Categóricas")
+
 # Validação para tipos de dados
 if df[x_var].dtype == "category" or df[x_var].dtype == "object":
     # Gráfico categórico
@@ -172,3 +174,14 @@ if df[x_var].dtype == "category" or df[x_var].dtype == "object":
     st.pyplot(fig)
 else:
     st.warning("Escolha uma variável categórica para o eixo X.")
+
+st.header("Insights")
+st.write("""
+ - Analisar as relação entre os sexos o valor das contas (x=sex, y=total_bill)
+ - Analisar as relações entre os sexos e o valor das gorjetas (x=sex, y=tips)
+""")
+
+st.header("Conclusão")
+st.write("""
+Conclui-se que o sexo não interfere muito no valor da conta e nem no valor da gorjeta.
+""")
