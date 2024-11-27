@@ -92,11 +92,13 @@ fig, ax = plt.subplots(figsize=(8, 4))
 sns.lineplot(data=df, x=x_var, y=y_var, ax=ax, marker='o') # Cria bandas de confiança com 95% de conifança
 st.pyplot(fig)
 
-# Insights do grafico de dispersão
+# Insights do grafico de linhas
 st.header("Insights")
 st.write("""
 - Analisar o comportmento das gorjetas com o aumento do numero de pessoas na mesa (x=size,y=tip)
     - Nessa análise, nota-se que há um aumento considerável de gorjeta conforme o número de pessoas na mesa aumenta
+- Analisar o comportmento do valor da conta com o aumento do numero de pessoas na mesa (x=size,y=total_bill)
+    - Nessa análise, nota-se que naturalmente há um aumento considerável do valor da conta conforme o número de pessoas na mesa aumenta
 
 """)
 
