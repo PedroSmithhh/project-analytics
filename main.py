@@ -69,7 +69,7 @@ st.write("""
 
 """)
 
-# Conclusões do gráfico de dispersão
+# Conclusões do gráfico de linhas
 st.header("Conclusão")
 st.write("""
 Conclui-se que seria interessante para o estabelecimento investir na qualidade do atendimento aos finais de semana ou até
@@ -78,23 +78,29 @@ estender o horário de atendimento. Alèm disso, seria interessante propor algum
 
 # Gráfico de regressão
 st.header(f"Regressão entre {x_var} e {y_var}")
-fig, ax = plt.subplots(figsize=(8, 4))
 
-# Plotando a regressão
-sns.regplot(data=df, x=x_var, y=y_var, ax=ax, scatter_kws={"s": 50}, line_kws={"color": "red"})
+# Certifique-se de que as variáveis selecionadas são adequadas para regressão
+if pd.api.types.is_numeric_dtype(df[x_var]) and pd.api.types.is_numeric_dtype(df[y_var]):
+    fig, ax = plt.subplots(figsize=(8, 4))
+    
+    # Plotando a regressão
+    sns.regplot(data=df, x=x_var, y=y_var, ax=ax, scatter_kws={"s": 50}, line_kws={"color": "red"})
+    
+    # Título e ajustes
+    ax.set_title(f"Regressão Linear entre {x_var} e {y_var}", fontsize=16)
+    ax.set_xlabel(f"{x_var} ($)")
+    ax.set_ylabel(f"{y_var} ($)")
+    
+    st.pyplot(fig)
 
-# Título e ajustes
-ax.set_title(f"Regressão Linear entre {x_var} e {y_var}", fontsize=16)
-ax.set_xlabel(f"{x_var} ($)")
-ax.set_ylabel(f"{y_var} ($)")
-
-st.pyplot(fig)
-
-st.header("Conclusão")
-st.write("""
-Conclui-se que quando um cliente gasta mais ele estranhamente tende a dar mais gorjeta, provavelmente esses clientes possuem
-uma boa condição financeira
-""")
+    st.header("Conclusão")
+    st.write(f"""
+    Conclui-se que existe uma relação entre {x_var} e {y_var}, e essa relação foi modelada usando 
+    uma regressão linear. Isso pode indicar que, à medida que {x_var} aumenta, {y_var} também tende 
+    a aumentar (ou diminuir, dependendo do coeficiente da regressão).
+    """)
+else:
+    st.error("Por favor, selecione variáveis numéricas para o gráfico de regressão.")
 
 # Variável alvo
 y = df["tip"]
@@ -131,7 +137,7 @@ ax.set_title("Regressão Linear: Total Bill vs Tip")
 ax.legend()
 st.pyplot(fig)
 
-# Permitir que o usuário insisra valores de conta e prever o valor da gorjeta
+# Permitir que o usuário insira valores de conta e prever o valor da gorjeta
 st.sidebar.header("Predição de Gorjeta")
 total_bill_input = st.sidebar.number_input("Insira o valor da conta:", min_value=0.0, step=1.0)
 
