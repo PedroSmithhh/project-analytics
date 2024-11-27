@@ -13,12 +13,11 @@ O aplicativo começa com uma introdução que apresenta o objetivo principal:
 
 ### Vizualização
 O aplicativo apresenta gráficos para explorar e identificar padrões nos dados:
-- Heatmap de Correlações: Mostra as relações entre as variáveis numéricas.
-- Gráfico de Dispersão: Explora associações entre variáveis, com insights baseados em variáveis como day, tip, sex e time.
-- Gráfico de Linha: Avalia tendências do valor da conta e da gorjeta em relação ao tamanho do grupo.
-- Gráfico Comparativo (Fumantes x Não Fumantes): Exibe a média de gorjetas para clientes fumantes e não fumantes.
-- Gráficos de Relações Categóricas: Explora associações entre variáveis qualitativas e numéricas usando boxplots.
-
+- Heatmap de Correlações
+- Gráfico de Dispersão
+- Gráfico de Linha
+- Gráfico Comparativo
+- Gráficos de Relações Categóricas
 ### Modelo de regressão linear
 - Treinamento de um modelo para prever o valor da gorjeta com base no valor da conta.
 - Métricas de desempenho do modelo:
