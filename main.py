@@ -156,7 +156,8 @@ st.write("""
 Conclui-se que há um aumento significativo no valor da gorjeta quando o valor da conta é maior
 """)
 
-st.header("Relações Categóricas")
+st.header("Gráfico para relações categóricas")
+st.write("Relações categóricas representam a associação entre variáveis qualitativas")
 
 # Validação para tipos de dados
 if df[x_var].dtype == "category" or df[x_var].dtype == "object":
