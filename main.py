@@ -75,31 +75,28 @@ st.write("""
 Conclui-se que investir em um ambiente que seja confortavel para grupos de pessoas é uma boa alternativa para o aumento das gorjetas
 """)
 
-# Gráfico de regressão
-st.header(f"Regressão entre {x_var} e {y_var}")
+# Cálculo do valor médio de gorjetas para fumantes e não fumantes
+tip_means = df.groupby('smoker')['tip'].mean().reset_index()
 
-# Certifique-se de que as variáveis selecionadas são adequadas para regressão
-if pd.api.types.is_numeric_dtype(df[x_var]) and pd.api.types.is_numeric_dtype(df[y_var]):
-    fig, ax = plt.subplots(figsize=(8, 4))
-    
-    # Plotando a regressão
-    sns.regplot(data=df, x=x_var, y=y_var, ax=ax, scatter_kws={"s": 50}, line_kws={"color": "red"})
-    
-    # Título e ajustes
-    ax.set_title(f"Regressão Linear entre {x_var} e {y_var}", fontsize=16)
-    ax.set_xlabel(f"{x_var} ($)")
-    ax.set_ylabel(f"{y_var} ($)")
-    
-    st.pyplot(fig)
+# Exibir as estatísticas
+st.header("Estatísticas Descritivas")
+st.write(tip_means)
 
-    st.header("Conclusão")
-    st.write(f"""
-    Conclui-se que existe uma relação entre {x_var} e {y_var}, e essa relação foi modelada usando 
-    uma regressão linear. Isso pode indicar que, à medida que {x_var} aumenta, {y_var} também tende 
-    a aumentar (ou diminuir, dependendo do coeficiente da regressão).
-    """)
-else:
-    st.error("Por favor, selecione variáveis numéricas para o gráfico de regressão.")
+# Gráfico comparativo
+st.header("Comparação de Gorjetas entre Fumantes e Não Fumantes")
+fig, ax = plt.subplots(figsize=(6, 4))
+sns.barplot(data=tip_means, x='smoker', y='tip', palette="viridis", ax=ax)
+ax.set_title("Média de Gorjetas por Grupo (Fumantes vs. Não Fumantes)")
+ax.set_xlabel("Fumante")
+ax.set_ylabel("Média de Gorjetas (USD)")
+st.pyplot(fig)
+
+# Análise estatística adicional
+st.header("Análise Estatística")
+st.write("""
+A média de gorjetas é um indicador útil para entender se há diferenças significativas 
+entre fumantes e não fumantes. Para aprofundar, testes estatísticos podem ser aplicados.
+""")
 
 # Treinamento do modelo
 # Variável alvo
