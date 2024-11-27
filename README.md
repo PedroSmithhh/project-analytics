@@ -40,7 +40,7 @@ pip install -r requirements.txt
 ```bash
 streamlit run app.py
 ```
-4. O aplicativo também pode ser encontrado nesse link: https://project-analytics-4hapdn8ivil4aq9m4jdfnm.streamlit.app
+4. O aplicativo também pode ser encontrado nesse link: https://project-analytics-trabalhofinal.streamlit.app
 
 ## Tecnologias utilizadas
 - Python: Linguagem de programação principal.
