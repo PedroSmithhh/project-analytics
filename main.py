@@ -43,7 +43,7 @@ Os valores variam de -1 a 1, onde:
 """)
 
 # Criando a matriz de correlação
-corr_matrix = df.corr()
+corr_matrix = df_numeric.corr()
 
 # Criando o heatmap
 fig, ax = plt.subplots(figsize=(8, 6))
