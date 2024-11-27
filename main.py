@@ -127,7 +127,7 @@ mae = mean_absolute_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
 # Exibir métricas no Streamlit
-st.header("Avaliação do Modelo")
+st.header("Modelo de predição")
 st.write(f"Erro Médio Absoluto (MAE): {mae:.2f}")
 st.write(f"Coeficiente de Determinação (R²): {r2:.2f}")
 
@@ -155,3 +155,20 @@ st.header("Conclusão")
 st.write("""
 Conclui-se que há um aumento significativo no valor da gorjeta quando o valor da conta é maior
 """)
+
+# Validação para tipos de dados
+if df[x_var].dtype == "category" or df[x_var].dtype == "object":
+    # Gráfico categórico
+    st.header(f"Relação entre {x_var} e {y_var}")
+    fig, ax = plt.subplots(figsize=(8, 6))
+    sns.boxplot(data=df, x=x_var, y=y_var, ax=ax, palette="Set2")
+
+    # Customização do gráfico
+    ax.set_title(f"Distribuição de {y_var} por {x_var}", fontsize=16)
+    ax.set_xlabel(x_var.capitalize(), fontsize=14)
+    ax.set_ylabel(y_var.capitalize(), fontsize=14)
+
+    # Exibir no Streamlit
+    st.pyplot(fig)
+else:
+    st.warning("Escolha uma variável categórica para o eixo X.")
