@@ -102,6 +102,7 @@ if pd.api.types.is_numeric_dtype(df[x_var]) and pd.api.types.is_numeric_dtype(df
 else:
     st.error("Por favor, selecione variáveis numéricas para o gráfico de regressão.")
 
+# Treinamento do modelo
 # Variável alvo
 y = df["tip"]
 
@@ -143,5 +144,5 @@ total_bill_input = st.sidebar.number_input("Insira o valor da conta:", min_value
 
 # Predizer gorjeta para o valor de entrada
 if total_bill_input > 0:
-    predicted_tip = model.predict([[total_bill_input]])[0]
+    predicted_tip = model.predict(pd.DataFrame([[total_bill_input]], columns=["total_bill"]))[0]
     st.sidebar.write(f"Gorjeta Prevista: ${predicted_tip:.2f}")
