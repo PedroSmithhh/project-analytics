@@ -5,7 +5,7 @@ Este repositório contém um projeto de análise de dados interativo utilizando 
 
 ### Introdução e objetivo
 O aplicativo começa com uma introdução que apresenta o objetivo principal:
-    - Explorar as relações entre o valor da conta (total_bill), gorjeta (tip), sexo dos clientes (sex), dias da semana (day), período (time) e tamanho do grupo (size).
+- Explorar as relações entre o valor da conta (total_bill), gorjeta (tip), sexo dos clientes (sex), dias da semana (day), período (time) e tamanho do grupo (size).
 
 ### Leitura e visão geral dos dados
     - Exibição inicial do dataset tips.
