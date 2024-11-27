@@ -27,6 +27,9 @@ st.write(df)
 st.header("Dados estatísticos gerais do Dataset")
 st.write(df.describe())
 
+# Filtrando apenas as colunas numéricas
+df_numeric = df.select_dtypes(include=['float64', 'int64'])
+
 # Header para o heatmap
 st.header("Mapa de Correlações")
 
