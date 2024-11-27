@@ -25,7 +25,35 @@ st.write(df)
 
 # Visão Geral
 st.header("Dados estatísticos gerais do Dataset")
-st.write(df.describe()) 
+st.write(df.describe())
+
+# Header para o heatmap
+st.header("Mapa de Correlações")
+
+# Descrição
+st.write("""
+O *heatmap* abaixo mostra a relação entre as variáveis numéricas do dataset. 
+Os valores variam de -1 a 1, onde:
+- **1 ou próximo a 1**: indica uma correlação positiva forte.
+- **-1 ou próximo a -1**: indica uma correlação negativa forte.
+- **0 ou próximo a 0**: indica ausência de correlação significativa.
+""")
+
+# Criando a matriz de correlação
+corr_matrix = df.corr()
+
+# Criando o heatmap
+fig, ax = plt.subplots(figsize=(8, 6))
+sns.heatmap(
+    corr_matrix,
+    annot=True,
+    cmap="coolwarm",
+    fmt=".2f",
+    linewidths=0.5,
+    ax=ax
+)
+ax.set_title("Correlação entre Variáveis Numéricas", fontsize=16, pad=15)
+st.pyplot(fig)
 
 # Seleção de variáveis
 st.sidebar.header("Configurações")
