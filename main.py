@@ -32,7 +32,11 @@ st.sidebar.header("Configurações")
 x_var = st.sidebar.selectbox("Selecione a variável X:", df.columns)
 y_var = st.sidebar.selectbox("Selecione a variável Y:", df.columns)
 
-
+# Gráfico de dispersão
+st.header("Gráfico de Dispersão")
+fig, ax = plt.subplots()
+sns.scatterplot(data=df, x=x_var, y=y_var, hue='sex', ax=ax)
+st.pyplot(fig)
 
 # Insights do grafico de dispersão
 st.header("Insights")
