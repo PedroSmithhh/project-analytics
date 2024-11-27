@@ -75,6 +75,8 @@ st.write("""
 Conclui-se que investir em um ambiente que seja confortavel para grupos de pessoas é uma boa alternativa para o aumento das gorjetas
 """)
 
+st.header("Comparação de Gorjetas entre Fumantes e Não Fumantes")
+
 # Cálculo do valor médio de gorjetas para fumantes e não fumantes
 tip_means = df.groupby('smoker')['tip'].mean().reset_index()
 
@@ -83,7 +85,6 @@ st.header("Estatísticas Descritivas")
 st.write(tip_means)
 
 # Gráfico comparativo
-st.header("Comparação de Gorjetas entre Fumantes e Não Fumantes")
 fig, ax = plt.subplots(figsize=(6, 4))
 sns.barplot(data=tip_means, x='smoker', y='tip', palette="viridis", ax=ax)
 ax.set_title("Média de Gorjetas por Grupo (Fumantes vs. Não Fumantes)")
@@ -91,12 +92,18 @@ ax.set_xlabel("Fumante")
 ax.set_ylabel("Média de Gorjetas (USD)")
 st.pyplot(fig)
 
-# Análise estatística adicional
-st.header("Análise Estatística")
+st.header("Insights")
 st.write("""
-A média de gorjetas é um indicador útil para entender se há diferenças significativas 
-entre fumantes e não fumantes. Para aprofundar, testes estatísticos podem ser aplicados.
+ - Analisar os valores médios de gorjeta (tip) entre fumantes e não fumantes.
 """)
+
+# Conclusões dos fumantes
+st.header("Conclusão")
+st.write("""
+Conclui-se que o hábito de fumar dos clientes não interfere no retorno financeiro do estabelecimento, logo não é necessario
+investir em áreas para fumantes por exemplo
+""")
+
 
 # Treinamento do modelo
 # Variável alvo
