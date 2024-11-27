@@ -186,3 +186,12 @@ st.header("Conclusão")
 st.write("""
 Conclui-se que o sexo não interfere muito no valor da conta e nem no valor da gorjeta.
 """)
+
+st.header("Conclusão final")
+st.write("""
+A análise do dataset Tips revelou que o valor da conta (total_bill) é o principal fator que influencia o valor das gorjetas. 
+         Observamos que homens e não fumantes, em média, deixam gorjetas maiores. 
+         Além disso, jantares nos finais de semana tendem a gerar receitas mais altas em gorjetas, enquanto grupos maiores 
+         apresentam um leve aumento proporcional. Esses insights podem ser aplicados na otimização de horários de atendimento, 
+         no treinamento de equipes para lidar com grupos e na criação de estratégias para maximizar receitas.
+""")
